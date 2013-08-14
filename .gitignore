@@ -1,0 +1,4 @@
+cluster/proc/*_pid
+cluster/shard/*
+cluster/shard1/*
+cluster/shard2/*
