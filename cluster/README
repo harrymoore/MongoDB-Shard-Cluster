@@ -1,46 +1,24 @@
-Harrys-AIR:mongo-cluster harry$ mongo --port 10011
-MongoDB shell version: 2.4.5
-connecting to: 127.0.0.1:10011/test
-Server has startup warnings: 
-Tue Aug 13 17:17:31.718 [initandlisten] 
-Tue Aug 13 17:17:31.718 [initandlisten] ** WARNING: soft rlimits too low. Number of files is 256, should be at least 1000
-> rs.initiate()
-{
-	"info2" : "no configuration explicitly specified -- making one",
-	"me" : "Harrys-AIR.local:10011",
-	"info" : "Config now saved locally.  Should come online in about a minute.",
-	"ok" : 1
-}
-> rs.status()
-{
-	"set" : "shard1",
-	"date" : ISODate("2013-08-13T21:24:05Z"),
-	"myState" : 1,
-	"members" : [
-		{
-			"_id" : 0,
-			"name" : "Harrys-AIR.local:10011",
-			"health" : 1,
-			"state" : 1,
-			"stateStr" : "PRIMARY",
-			"uptime" : 394,
-			"optime" : Timestamp(1376428985, 1),
-			"optimeDate" : ISODate("2013-08-13T21:23:05Z"),
-			"self" : true
-		}
-	],
-	"ok" : 1
-}
 
+#
+#
+#
 
-shard1:PRIMARY> rs.add("m2.shard1.mongocluster:10012")
+1. Connect to a node in shard 1 replica set
+mongo --host m1.shard1.mongocluster --port 10011
 
-shard1:PRIMARY> rs.add("m3.shard1.mongocluster:10013")
+2. initial the replica set:
+rs.initiate()
 
+3. add the other 2 nodes to the replica set 
+rs.add("m2.shard1.mongocluster:10012")
+rs.add("m3.shard1.mongocluster:10013")
+
+4. check status to make sure it shows all 3 nodes
+May need to run rs.status() several times before the nodes stabalize and the stateStr is set to SECONDARY on the 2 additional nodes
 shard1:PRIMARY> rs.status()
 {
 	"set" : "shard1",
-	"date" : ISODate("2013-08-13T21:31:57Z"),
+	"date" : ISODate("2013-08-14T21:50:25Z"),
 	"myState" : 1,
 	"members" : [
 		{
@@ -49,9 +27,9 @@ shard1:PRIMARY> rs.status()
 			"health" : 1,
 			"state" : 1,
 			"stateStr" : "PRIMARY",
-			"uptime" : 866,
-			"optime" : Timestamp(1376429500, 1),
-			"optimeDate" : ISODate("2013-08-13T21:31:40Z"),
+			"uptime" : 884,
+			"optime" : Timestamp(1376516995, 1),
+			"optimeDate" : ISODate("2013-08-14T21:49:55Z"),
 			"self" : true
 		},
 		{
@@ -60,11 +38,11 @@ shard1:PRIMARY> rs.status()
 			"health" : 1,
 			"state" : 2,
 			"stateStr" : "SECONDARY",
-			"uptime" : 36,
-			"optime" : Timestamp(1376429500, 1),
-			"optimeDate" : ISODate("2013-08-13T21:31:40Z"),
-			"lastHeartbeat" : ISODate("2013-08-13T21:31:57Z"),
-			"lastHeartbeatRecv" : ISODate("2013-08-13T21:31:57Z"),
+			"uptime" : 37,
+			"optime" : Timestamp(1376516995, 1),
+			"optimeDate" : ISODate("2013-08-14T21:49:55Z"),
+			"lastHeartbeat" : ISODate("2013-08-14T21:50:24Z"),
+			"lastHeartbeatRecv" : ISODate("2013-08-14T21:50:25Z"),
 			"pingMs" : 0,
 			"syncingTo" : "Harrys-AIR.local:10011"
 		},
@@ -72,25 +50,17 @@ shard1:PRIMARY> rs.status()
 			"_id" : 2,
 			"name" : "m3.shard1.mongocluster:10013",
 			"health" : 1,
-			"state" : 5,
-			"stateStr" : "STARTUP2",
-			"uptime" : 17,
-			"optime" : Timestamp(0, 0),
-			"optimeDate" : ISODate("1970-01-01T00:00:00Z"),
-			"lastHeartbeat" : ISODate("2013-08-13T21:31:56Z"),
-			"lastHeartbeatRecv" : ISODate("2013-08-13T21:31:55Z"),
+			"state" : 2,
+			"stateStr" : "SECONDARY",
+			"uptime" : 30,
+			"optime" : Timestamp(1376516995, 1),
+			"optimeDate" : ISODate("2013-08-14T21:49:55Z"),
+			"lastHeartbeat" : ISODate("2013-08-14T21:50:23Z"),
+			"lastHeartbeatRecv" : ISODate("2013-08-14T21:50:24Z"),
 			"pingMs" : 0,
-			"lastHeartbeatMessage" : "initial sync need a member to be primary or secondary to do our initial sync"
+			"syncingTo" : "Harrys-AIR.local:10011"
 		}
 	],
 	"ok" : 1
 }
-
-
-
-mongo --port 10021
-
-rs.add("m2.shard2.mongocluster:10022")
-
-rs.add("m3.shard2.mongocluster:10023")
 
