@@ -1,0 +1,12 @@
+127.0.0.1	m1.shard1.mongocluster
+127.0.0.1	m2.shard1.mongocluster
+127.0.0.1	m3.shard1.mongocluster
+127.0.0.1	m1.shard2.mongocluster
+127.0.0.1	m2.shard2.mongocluster
+127.0.0.1	m3.shard2.mongocluster
+127.0.0.1	c1.shard.mongocluster
+127.0.0.1	c2.shard.mongocluster
+127.0.0.1	c3.shard.mongocluster
+127.0.0.1	r1.shard.mongocluster
+127.0.0.1	r2.shard.mongocluster
+127.0.0.1	r3.shard.mongocluster
