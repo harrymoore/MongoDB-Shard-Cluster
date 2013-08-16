@@ -64,3 +64,24 @@ shard1:PRIMARY> rs.status()
 	"ok" : 1
 }
 
+
+mongo --host c1.shard.mongocluster --port 10201
+mongos> sh.addShard("shard1/m1.shard1.mongocluster:10011")
+mongos> sh.addShard("shard2/m1.shard2.mongocluster:10022")
+
+mongos> sh.status()
+--- Sharding Status --- 
+  sharding version: {
+	"_id" : 1,
+	"version" : 3,
+	"minCompatibleVersion" : 3,
+	"currentVersion" : 4,
+	"clusterId" : ObjectId("520bf82c62ac1bd9a6dbe186")
+}
+  shards:
+	{  "_id" : "shard1",  "host" : "shard1/m1.shard1.mongocluster:10011,m2.shard1.mongocluster:10012,m3.shard1.mongocluster:10013" }
+	{  "_id" : "shard2",  "host" : "shard2/m1.shard2.mongocluster:10021,m2.shard2.mongocluster:10022,m3.shard2.mongocluster:10023" }
+  databases:
+	{  "_id" : "admin",  "partitioned" : false,  "primary" : "config" }
+
+
