@@ -1,12 +1,12 @@
-127.0.0.1	m1.shard1.mongocluster
-127.0.0.1	m2.shard1.mongocluster
-127.0.0.1	m3.shard1.mongocluster
-127.0.0.1	m1.shard2.mongocluster
-127.0.0.1	m2.shard2.mongocluster
-127.0.0.1	m3.shard2.mongocluster
-127.0.0.1	c1.shard.mongocluster
-127.0.0.1	c2.shard.mongocluster
-127.0.0.1	c3.shard.mongocluster
-127.0.0.1	r1.shard.mongocluster
-127.0.0.1	r2.shard.mongocluster
-127.0.0.1	r3.shard.mongocluster
+127.0.0.1	m1.shard1.mongocluster	# 10011
+127.0.0.1	m2.shard1.mongocluster	# 10012
+127.0.0.1	m3.shard1.mongocluster	# 10013
+127.0.0.1	m1.shard2.mongocluster	# 10021
+127.0.0.1	m2.shard2.mongocluster	# 10022
+127.0.0.1	m3.shard2.mongocluster	# 10023
+127.0.0.1	c1.shard.mongocluster	# 10101
+127.0.0.1	c2.shard.mongocluster	# 10102
+127.0.0.1	c3.shard.mongocluster	# 10103
+127.0.0.1	r1.shard.mongocluster	# 10201
+127.0.0.1	r2.shard.mongocluster	# 10202
+127.0.0.1	r3.shard.mongocluster	# 10203
