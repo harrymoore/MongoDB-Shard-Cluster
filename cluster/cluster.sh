@@ -13,10 +13,10 @@ if [ "$1" == "stop" ]; then
 	pkill -F proc/s2m2_pid
 	pkill -F proc/s2m3_pid
 elif [ "$1" == "start" ]; then
-	mkdir -p proc shard/c1/data/configdb shard/c1/logs shard/c2/data/configdb shard/c2/logs shard/c3/data/configdb shard/c3/logs 
-	mkdir -p shard/r1/logs shard/r2/logs shard/r3/logs 
-	mkdir -p shard1/m1/data shard1/m1/logs shard1/m2/data shard1/m2/logs shard1/m3/data shard1/m3/logs 
-	mkdir -p shard2/m1/data shard2/m1/logs shard2/m2/data shard2/m2/logs shard2/m3/data shard2/m3/logs 
+	mkdir -p proc data/shard/c1/data/configdb data/shard/c1/logs data/shard/c2/data/configdb data/shard/c2/logs data/shard/c3/data/configdb data/shard/c3/logs 
+	mkdir -p data/shard/r1/logs data/shard/r2/logs data/shard/r3/logs 
+	mkdir -p data/shard1/m1/data data/shard1/m1/logs data/shard1/m2/data data/shard1/m2/logs data/shard1/m3/data data/shard1/m3/logs 
+	mkdir -p data/shard2/m1/data data/shard2/m1/logs data/shard2/m2/data data/shard2/m2/logs data/shard2/m3/data data/shard2/m3/logs 
 
 	echo
 	echo Starting Shard1 m1
@@ -59,7 +59,7 @@ elif [ "$1" == "start" ]; then
 	echo
 	echo Starting config server c3
 	mongod --config conf/c3.conf &
-	# sleep 1
+	sleep 2
 
 	echo
 	echo Starting router server r1
