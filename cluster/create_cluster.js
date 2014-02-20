@@ -3,7 +3,7 @@
 //   mongo --host m1.shard1.mongocluster --port 10011
 // run this script:
 //   load("create_cluster.sh");
-use config;
+// use config;
 db.settings.save( { _id:"chunksize", value: "5" } );
 
 rs.initiate()

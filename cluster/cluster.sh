@@ -21,6 +21,42 @@ elif [ "$1" == "start" ]; then
 	mkdir -p data/shard2/m1/data data/shard2/m1/logs data/shard2/m2/data data/shard2/m2/logs data/shard2/m3/data data/shard2/m3/logs 
 
   #
+  # replSet 'shard1' nodes
+  #
+	echo
+	echo Starting Shard1 m1
+  mongod --rest --config conf/s1m1.conf &
+  # mongod --dbpath data/shard1/m1/data/ --port 20000 --configsvr
+	# sleep 1
+
+	echo
+	echo Starting Shard1 m2
+	mongod --rest --config conf/s1m2.conf &
+	# sleep 1
+
+	echo
+	echo Starting Shard1 m3
+	mongod --rest --config conf/s1m3.conf &
+	# sleep 1
+
+  #
+  # replSet 'shard2' nodes
+  #
+	echo
+	echo Starting Shard2 m1
+	mongod --rest --config conf/s2m1.conf &
+	# sleep 1
+
+	echo
+	echo Starting Shard2 m2
+	mongod --rest --config conf/s2m2.conf &
+	sleep 3
+
+	echo
+	echo Starting Shard2 m3
+	mongod --rest --config conf/s2m3.conf &
+  sleep 3
+  #
   # config servers
   #
 	echo Starting config server c1
@@ -36,7 +72,7 @@ elif [ "$1" == "start" ]; then
 	echo
 	echo Starting config server c3
 	mongod --rest --config conf/c3.conf &
-	sleep 3
+	sleep 2
 
   #
   # routing servers
@@ -55,36 +91,6 @@ elif [ "$1" == "start" ]; then
 	echo Starting router server r3
 	mongos --config conf/r3.conf &
 	sleep 2
-
-	echo
-	echo Starting Shard1 m1
-  mongod --rest --config conf/s1m1.conf &
-  # mongod --dbpath data/shard1/m1/data/ --port 20000 --configsvr
-	# sleep 1
-
-	echo
-	echo Starting Shard1 m2
-	mongod --rest --config conf/s1m2.conf &
-	# sleep 1
-
-	echo
-	echo Starting Shard1 m3
-	mongod --rest --config conf/s1m3.conf &
-	# sleep 1
-
-	echo
-	echo Starting Shard2 m1
-	mongod --rest --config conf/s2m1.conf &
-	# sleep 1
-
-	echo
-	echo Starting Shard2 m2
-	mongod --rest --config conf/s2m2.conf &
-	sleep 3
-
-	echo
-	echo Starting Shard2 m3
-	mongod --rest --config conf/s2m3.conf &
 
 else
 	echo start or stop the entire MongoDB Sharded cluster:

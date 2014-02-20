@@ -6,7 +6,9 @@
 1. Connect to a node in shard 1 replica set
 mongo --host m1.shard1.mongocluster --port 10011
 
-2. initial the replica set:
+use config
+
+2. initialize the replica set:
 rs.initiate()
 
 3. add the other 2 nodes to the replica set 
@@ -84,4 +86,11 @@ mongos> sh.status()
   databases:
 	{  "_id" : "admin",  "partitioned" : false,  "primary" : "config" }
 
+### enable sharding on a database
+mongos> sh.enableSharding("shard-test")
 
+mongos> use shard-test
+switched to db shard-test
+mongos> db.documents.ensureIndex( { x: 1, y: 1 } )
+mongos> sh.shardCollection("shard-test.documents", {x: 1, y: 1})
+{ "collectionsharded" : "shard-test.documents", "ok" : 1 }
